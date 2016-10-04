@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-  SELECT_REDDIT, INVALIDATE_REDDIT,
+  SELECT_REDDIT, 
   REQUEST_POSTS, RECEIVE_POSTS
 } from '../actions'
 
@@ -14,16 +14,9 @@ const selectedReddit = (state = 'reactjs', action) => {
 }
 
 const posts = (state = {
-  isFetching: false,
-  didInvalidate: false,
   items: []
 }, action) => {
   switch (action.type) {
-    case INVALIDATE_REDDIT:
-      return {
-        ...state,
-        didInvalidate: true
-      }
     case REQUEST_POSTS:
       return {
         ...state,
@@ -45,7 +38,6 @@ const posts = (state = {
 
 const postsByReddit = (state = { }, action) => {
   switch (action.type) {
-    case INVALIDATE_REDDIT:
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return {
